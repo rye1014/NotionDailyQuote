@@ -10,6 +10,8 @@ HEADERS = {
     "Notion-Version": "2022-06-28",
     "Content-Type": "application/json"
 }
+TELEGRAM_TOKEN = os.getenv("TELEGRAM_BOT_TOKEN")
+TELEGRAM_CHAT_ID = os.getenv("TELEGRAM_CHAT_ID")
 
 # 查詢所有 tag 包含 "佳句" 的資料
 def query_quotes():
@@ -59,7 +61,24 @@ def set_random_judgement(pages):
     name = chosen["properties"]["Name"]["title"][0]["plain_text"]
     print(f"✅ 今日佳句：{name}")
 
+def send_telegram_message(message):
+    url = f"https://api.telegram.org/bot{TELEGRAM_TOKEN}/sendMessage"
+    payload = {
+        "chat_id": TELEGRAM_CHAT_ID,
+        "text": message
+    }
+    response = requests.post(url, json=payload)
+    response.raise_for_status()
+    print("📨 已發送 Telegram 訊息")
+
+
 if __name__ == "__main__":
     quotes = query_quotes()
     clear_judgement(quotes)
     set_random_judgement(quotes)
+
+    github_event = os.getenv("GITHUB_EVENT_NAME", "")
+    if github_event == "schedule":
+        send_telegram_message("🟢 已成功更新佳句展示（手動觸發）")
+    elif github_event == "workflow_dispatch":
+        send_telegram_message("🔄 已成功更新佳句展示（自動排程觸發）")
