@@ -2,7 +2,7 @@ name: Update Daily Quote
 
 on:
   schedule:
-    - cron: '0 5 * * *'  # 每小時的第 0 分鐘執行（UTC）
+    - cron: '0 5 * * *'  # 
   workflow_dispatch:  # 允許手動觸發
 
 jobs:
