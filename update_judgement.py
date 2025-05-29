@@ -10,7 +10,7 @@ HEADERS = {
     "Notion-Version": "2022-06-28",
     "Content-Type": "application/json"
 }
-TELEGRAM_TOKEN = os.getenv("TELEGRAM_BOT_TOKEN")
+TELEGRAM_BOT_TOKEN = os.getenv("TELEGRAM_BOT_TOKEN")
 TELEGRAM_CHAT_ID = os.getenv("TELEGRAM_CHAT_ID")
 
 # 查詢所有 tag 包含 "佳句" 的資料
