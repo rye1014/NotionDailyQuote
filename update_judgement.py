@@ -77,8 +77,9 @@ if __name__ == "__main__":
     clear_judgement(quotes)
     set_random_judgement(quotes)
 
-    github_event = os.getenv("GITHUB_EVENT_NAME", "")
-    if github_event == "schedule":
+    trigger_type = os.getenv("TRIGGER_TYPE", "")
+    if trigger_type == "workflow_dispatch":
         send_telegram_message("🟢 已成功更新佳句展示（手動觸發）")
-    elif github_event == "workflow_dispatch":
+    elif trigger_type == "schedule":
         send_telegram_message("🔄 已成功更新佳句展示（自動排程觸發）")
+
