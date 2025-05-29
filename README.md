@@ -73,3 +73,12 @@
 └── .github/
     └── workflows/
         └── daily.yml        # GitHub Actions 自動化排程
+```
+
+---
+
+## 授權條款
+
+本專案採用 [MIT License](License) 授權。  
+您可以自由使用、修改、再散佈本程式碼，亦可用於商業用途，但不提供任何保證。詳情請見 [License](License) 文件。
+
