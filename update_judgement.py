@@ -26,14 +26,14 @@ def query_quotes():
     response.raise_for_status()
     return response.json()["results"]
 
-# 將所有的「判定」改為 False
+# 將所有的 Show 改為 False
 def clear_judgement(pages):
     for page in pages:
         page_id = page["id"]
         url = f"{NOTION_API_URL}/pages/{page_id}"
         payload = {
             "properties": {
-                "判定": {
+                "Show": {
                     "checkbox": False
                 }
             }
@@ -50,7 +50,7 @@ def set_random_judgement(pages):
     url = f"{NOTION_API_URL}/pages/{page_id}"
     payload = {
         "properties": {
-            "判定": {
+            "Show": {
                 "checkbox": True
             }
         }
